@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block cuerpo %}
+{% for dato in eliminar %}
+<p style="color:#990000">
+  <h3> {{ dato}}
+   <a href="/eliminar_cliente/{{dato.id}}">eliminar</a>
+<a href="/modificar_cliente/{{dato.id}}">modificar</a><br></h3></p>
+{% endfor %}
+{% endblock cuerpo %}

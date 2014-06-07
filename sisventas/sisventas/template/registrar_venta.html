@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+
+
+{% block cuerpo %}
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#id_cliente").attr("disabled","disabled")
+		$("#buscar").submit(function(){
+			var datos=$(this).serializeObject()
+			console.log(datos)
+			$.post("/buscar/",datos,function(res){
+				console.log(res.idCli)
+				if(res.idCli==-1){
+					$("#response").html("El cliente no existe desea registrarlo  <a href='/cliente/'>Crear</a>")
+				}else{
+					$("#response").html("")
+					$("#id_idCliente").val(res.idCli)
+					$("#id_cliente").val(res.idCli)
+					$("#id_cliente").attr("disabled","disabled")
+				}
+				
+			},"json");
+
+			return false;
+		});
+	});
+</script>
+<h3>
+<form action="" method="POST" id="buscar">
+	{% csrf_token %}
+	{{buscar}}
+	<input type="submit"value="buscar">
+</form>
+<div id="response">
+
+</div>
+	</h3>	 
+<h3>
+			            <form action="" method="post">{% csrf_token %}
+			               <table>
+
+			                {{ new_venta }}
+			            </table>
+			             	<input type="submit" value="registrarse"/>
+			             	<a href="/user/login/">cancelar<span class="element brand">
+			            </form>
+			        </h3>
+{% endblock cuerpo %}

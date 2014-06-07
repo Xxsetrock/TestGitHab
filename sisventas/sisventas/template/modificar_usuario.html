@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block cuerpo %}
+
+		 
+<h3>
+			            <form action="" method="post">{% csrf_token %}
+			               <table>
+			                {{ formulario }}
+			                <label>Tipo de usuario</label>
+			                <select name='stipo'>
+			                	{% if formulario.is_superuser %}
+								<option value="11">Administrador</option>
+			                	<option value="01">Empleado</option>
+			                	{% else %}
+			                	<option value="01">Empleado</option>
+			                	<option value="11">Administrador</option>
+			                	{% endif %}
+			                </select>
+			            	</table>
+			             	<input type="submit" value="registrarse"/>
+			             	<a href="/user/login/">cancelar<span class="element brand">
+			            </form></h3>
+{% endblock cuerpo %}

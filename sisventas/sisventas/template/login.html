@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block cuerpo %}<h3>
+<form id="formulario" method="post" action="">{% csrf_token %}
+            <fieldset>
+                {% block form %}
+                    {% for field in formulario %}
+                        {{ field.errors }}
+                        {{ field.label_tag }}
+                        <div >
+                            {{ field }}
+                            <button class=""></button>
+                        </div>
+                    {% endfor %}
+                {% endblock %}
+                <div >
+                    <input type="submit" value="{% block submit %}enviar{% endblock submit %}">
+
+                    <a href='/{% block cancel %}{% endblock cancel %}' class=''>Cancelar</a>
+                </div>
+            </fieldset>
+        </form><h3>
+{% endblock cuerpo %}

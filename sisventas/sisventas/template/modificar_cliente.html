@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block cuerpo %}
+
+	<h3>	 
+<div class="forr">
+			            <form action="" method="post">{% csrf_token %}
+			               <table>
+			                {{ formulario }}
+			            </table>
+			             	<input type="submit" value="registrarse"/>
+			             	<a href="/user/login/">cancelar<span class="element brand">
+			            </form></h3>
+</div>
+{% endblock cuerpo %}

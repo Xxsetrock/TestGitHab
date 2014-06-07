@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block cuerpo %}
+<h3>LISTA DE USUARIOS</h3>
+{% for dato in eliminar %}
+  <h3> 
+  	{{ dato}}
+  	<a href="/eliminar_usuario/{{dato.id}}">eliminar</a>
+  	<br></h3>
+<br></h3>
+{% endfor %}
+{% endblock cuerpo %}

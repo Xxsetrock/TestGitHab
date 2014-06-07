@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block cuerpo %}
+
+<h3>
+			            <form action="" method="post">{% csrf_token %}
+			               <table>
+			                {{ new_categoria }}
+			           		 </table>
+			             	<input type="submit" value="Aceptar"/>
+			             	<a href="/user/login/">cancelar<span class="element brand">
+			            </form></h3>
+{% endblock cuerpo %}

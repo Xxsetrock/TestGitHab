@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block cuerpo %}
+{% for dato in eliminar %}
+  <h3> {{ dato}}
+   <a href="/eliminar_producto/{{dato.id}}">eliminar</a>
+<a href="/modificar_producto/{{dato.id}}">modificar</a><br></h3>
+{% endfor %}
+{% endblock cuerpo %}

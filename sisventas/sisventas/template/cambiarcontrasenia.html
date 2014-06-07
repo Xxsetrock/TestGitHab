@@ -1,0 +1,42 @@
+
+
+{% extends 'base.html' %}
+
+{% block cuerpo %}
+
+         
+<section id="content">
+    <div class="wrap-content zerogrid">
+        <div class="">
+            <div class="">
+                <div class="">
+                    <h2>
+                            <div class="span5">
+                                <form id="formulario" method="post" action="">{% csrf_token %}
+                                    <fieldset>
+                                        <legend>{% block legend %}Formulario{% endblock legend %}</legend>
+                                        {% block form %}
+                                            {% for field in formulario %}
+                                                {{ field.errors }}
+                                                {{ field.label_tag }}
+                                                <div class="input-control text">
+                                                    {{ field }}
+                                                    <button class="btn-clear"></button>
+                                                </div>
+                                            {% endfor %}
+                                        {% endblock %}
+                                        <div class="controls">
+                                            <input type="submit" value="{% block submit %}enviar{% endblock submit %}">
+                                            <a href='/{% block cancel %}{% endblock cancel %}' class='button'>Cancelar</a>
+                                        </div>
+                                    </fieldset>
+                                </form>
+                            </div>
+                    </h2>  
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock cuerpo %}
