@@ -11,8 +11,8 @@ class Categoria(models.Model):
 
 class newproducto(models.Model):
 	NombredelProcuto=models.CharField(max_length=200)
-	cantidad=models.DecimalField(max_digits=3,decimal_places=0)
-	precio=models.DecimalField(max_digits=5,decimal_places=2)
+	cantidad=models.IntegerField()
+	precio=models.DecimalField(max_digits=10,decimal_places=1)
 	fecha=models.DateField(auto_now=True)
 	cat=models.ManyToManyField(Categoria)
 	def __unicode__(self):

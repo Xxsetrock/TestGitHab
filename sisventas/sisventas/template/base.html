@@ -9,14 +9,14 @@
 <link href="/static/style.css" rel="stylesheet" type="text/css" />
 <link href="/static/vistas.css" rel="stylesheet" type="text/css" />
 
-<script src="/static/jquery-1.4.2.min.js" type="text/javascript"></script>
-<script src="/static/cufon-yui.js" type="text/javascript"></script>
-<script src="/static/cufon-replace.js" type="text/javascript"></script>
-<script src="/static/Gill_Sans_400.font.js" type="text/javascript"></script>
-<script src="/static/script.js" type="text/javascript"></script>
+<link href="/static/css/multi-select.css" rel="stylesheet" type="text/css" />
+<link href="/static/css/reveal.css" rel="stylesheet" type="text/css" />
 <script src="/static/js/jquery-1.4.2.min.js" type="text/javascript"></script>
-
+<script src="/static/js/jquery.multi-select.js" type="text/javascript"></script>
 <script src="/static/js/serializeObject.js" type="text/javascript"></script>
+<script src="/static/js/jquery.reveal.js" type="text/javascript"></script>
+
+
 
 <!--[if lt IE 7]>
 	<script type="text/javascript" src="/static/ie_png.js"></script>
@@ -42,6 +42,7 @@
 					<ul>
 						{% if user.is_authenticated %}
 							{% if user.is_superuser %}
+								{% if user.is_staff %}
 		                        <li>
 		                            <a href="">Usuario</a>
 		                            <ul>
@@ -58,43 +59,63 @@
 	                				<li><a href="/ver_productos/">Listar productos</a></li>
 	                				</ul>
 	            				</li>
-	            			{% else %}
-	            				
-	            				<li>
-	                            <a href="">Cliente</a>
-	                            <ul>
-	                				<li><a href="/cliente/">Registrar Cliente</a></li>
-	                				<li><a href="/listar_cliente/">Eliminar Modificar</a></li>
-	                				</ul>
-	                        	</li>
-	                        	<li>
-	                          	  <a href="/new_venta/">Registrar Venta</a>
-	                            </li>
-	                            <li>
-	                            <a href="">Reportes</a>
-	                            <ul>
-	                				<li><a href="/reporte/">listar productos</a></li>
+		                        {% else %}
+		                        <li>
+	                				<a  href="">Producto</a>
+	                				<ul>
+	                				<li><a href="/new_categoria/">Nueva Categoria</a></li>
+	                				<li><a href="/new_producto/">Crear Producto</a></li>
+	                				<li><a href="/listar_producto/">Eliminar Modificar</a></li>
 	                				<li><a href="/ver_productos/">Listar productos</a></li>
 	                				</ul>
-	                        	</li>
+	            				</li>
+	            				{% endif%}
+	            			{% else %}
+	            				{% if user.is_staff %}
+		            				<li>
+		                            	<a href="">Cliente</a>
+		                            	<ul>
+		                				<li><a href="/cliente/">Cliente</a></li>
+		                				<li><a href="/listar_cliente/">Eliminar Modificar</a></li>
+		                				</ul>
+		                        	</li>
+		                        	<li>
+		                          	  <a href="/new_venta/">Venta</a>
+		                            </li>
+		                            <li>
+		                            <a href="">Reportes</a>
+		                            <ul>
+		                				<li><a href="/ReporteUsuario/">Reporte</a></li>
+		                				<li><a href="/ver_productos/">Listar productos</a></li>
+		                				</ul>
+		                        	</li>
+	                        	{% else %}
+	                        		<li>
+			                        	<a href="">Reportes</a>
+			                            <ul>
+			                				<li><a href="/factura/">listar productos</a></li>
+			                				<li><a href="/ver_productos/">Listar productos</a></li>
+			                			</ul>
+		                        	</li>
+	                        	{% endif %}
 		                    {% endif %}
 						
-                        <li>
-                			<a  href="/user/resetpass/">Editar password</a>
-            			</li>
-            			<li>
-                            <a href="/salir/">Cerrar Sesión</a>
-                        </li>
-                        <li>
-                            <a href="/">inicio</a>
+	                        <li>
+	                			<a  href="/user/resetpass/">Editar password</a>
+	            			</li>
+	            			<li>
+	                            <a href="/salir/">Cerrar Sesión</a>
+	                        </li>
+	                        <li>
+	                            <a href="/">inicio</a>
                         </li>
                         {% else %}
-            			<li>
-                            <a href="/user/login/">Iniciar Sesión</a>
-                        </li>
-                        <li>
-                            <a href="/">inicio</a>
-                        </li>
+	            			<li>
+	                            <a href="/user/login/">Iniciar Sesión</a>
+	                        </li>
+	                        <li>
+	                            <a href="/">inicio</a>
+	                        </li>
              			 {% endif %}
 					</ul>
 				</div>
@@ -131,6 +152,5 @@
 		</div>
 	</div>
 </div>
-<script type="text/javascript"> Cufon.now(); </script>
 </body>
 </html>

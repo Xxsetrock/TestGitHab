@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth.forms import UserCreationForm
 from django.core.paginator import Paginator,EmptyPage,InvalidPage
 from django.contrib.auth.models import User
+from forms import UsuarioForm
 #from forms import RegistroForm
 
 def index(request):
@@ -31,6 +32,10 @@ def registro(request):
           u.is_staff=False
       else:
         u.is_staff=True
+        if tipou[1] == '1':
+          u.is_staff=True
+        else:
+          u.is_staff=False
       u.save()
 
       return HttpResponseRedirect('/user/login/')

@@ -1,10 +1,14 @@
 from django import forms
-from django.forms import ModelForm
 #from models import Registro
 
-
+from  django import forms
 from django.contrib.auth.models import User
 from django.forms import ModelForm
+class UsuarioForm(forms.Form):
+	class Meta:
+		form=User
+		exclude=["username"]
+
 
 #class RegistroForm(ModelForm):
    # username= forms.CharField(label="Nombre de usuario", widget=forms.TextInput())

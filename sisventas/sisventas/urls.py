@@ -33,8 +33,8 @@ urlpatterns = patterns('',
     url(r'^eliminar_producto/([0-9]{1,2})/$', 'sisventas.apps.producto.views.eliminar'),
     url(r'^listar_producto/$', 'sisventas.apps.producto.views.listar_producto'),
     url(r'^modificar_producto/([0-9]{1,2})/$','sisventas.apps.producto.views.modificar_producto'),
-    url(r'^ver_productos/$', 'sisventas.apps.producto.views.listadodeTodo'),
 
+    url(r'^ver_productos/$', 'sisventas.apps.producto.views.listadodeTodo'),
     url(r'^listado_por_categorias/(?P<categoria>\d+)/$','sisventas.apps.producto.views.ListadoPorCategoria'),
     url(r'^listado_por_categorias/(?P<idp>\d+)/(?P<idc>\d+)/$','sisventas.apps.producto.views.borrarRel'),
 
@@ -52,8 +52,12 @@ urlpatterns = patterns('',
 
 
     url(r'^new_venta/$', 'sisventas.apps.venta.views.new_venta'),
+    url(r'^detalle/(?P<id>\d+)/$', 'sisventas.apps.venta.views.detalleventa'),
+    url(r'^cancelarVenta/$','sisventas.apps.venta.views.cancelarVenta'),
 
 
-    url(r'^reporte/$', 'sisventas.apps.venta.views.reporte'),
+
+    url(r'^factura/$', 'sisventas.apps.venta.views.factura'),
+    url(r'^ReporteUsuario/$', 'sisventas.apps.venta.views.ReporteUsuario'),
     url(r'^buscar/$', 'sisventas.apps.venta.views.buscar'),
 )+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

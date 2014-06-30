@@ -7,7 +7,7 @@ from datetime import datetime
 class  client(models.Model):
 	nombre = models.CharField(max_length = '50')
 	apellido = models.CharField(max_length = '50')
-	ci = models.CharField(max_length = '12')
+	ci = models.CharField(max_length = '12', unique='true')
 	direccion = models.CharField(max_length = '50')
 	telefono = models.CharField(max_length = '15')
 	fecha=models.DateTimeField(auto_now=True)

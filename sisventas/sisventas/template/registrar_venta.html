@@ -1,49 +1,230 @@
-{% extends 'base.html' %}
+	{% extends 'base.html' %}
 
 
 
-{% block cuerpo %}
-<script type="text/javascript">
-	$(document).ready(function(){
-		$("#id_cliente").attr("disabled","disabled")
-		$("#buscar").submit(function(){
-			var datos=$(this).serializeObject()
-			console.log(datos)
-			$.post("/buscar/",datos,function(res){
-				console.log(res.idCli)
-				if(res.idCli==-1){
-					$("#response").html("El cliente no existe desea registrarlo  <a href='/cliente/'>Crear</a>")
-				}else{
-					$("#response").html("")
-					$("#id_idCliente").val(res.idCli)
-					$("#id_cliente").val(res.idCli)
-					$("#id_cliente").attr("disabled","disabled")
+	{% block cuerpo %}
+	<script type="text/javascript">
+
+		
+
+
+		/*function cambiarFoto(o)
+		{ 
+		      $("#id_producto").attr("value",o)
+		} */
+	
+		function RegistrarCompra(f)
+		{
+			
+			var id_producto=f.idpro.value;
+			$("#id_producto").attr("checked",id_producto)
+			$.ajax({
+				url: '/detalle/'+id_producto+"/",
+				type: 'POST',
+				data: $("#fdetalle").serialize(),
+				success:registroC,
+				error:errores
+			});
+		}
+		function registroC(data){
+
+		$("#dformulario").text(data);
+		}
+		function errores()
+		{
+			alert("errors");
+		}
+		function crearFormulario(data){
+
+		$("#fformulario").html(data);
+		$("#id_cantidad").attr("value","0")
+		}
+		$(document).ready(function()
+		{
+
+		//$(".item_lista .principal #detalle .subprincipal").click(Comprar);
+		$(".bcomprar").click(function(event){
+			//$("#id_cantidad").attr("value","0")
+			event.preventDefault();
+			var id_producto=$(this).attr("href");
+			//alert(id_producto);
+			var sel=document.getElementById('id_producto');
+			var aux=sel.getElementsByTagName('option');
+			//objeto=document.getElment
+			//alert(aux);
+			
+			for(i=0;i<aux.length;i++)
+			{
+				//alert(aux[i]);
+				if(aux[i].value==id_producto)
+				{
+					aux[i].selected='true';
+					//alert(aux[i]);
 				}
+			}
 				
-			},"json");
+					
+			
+			//id_producto.selected='true';
+			$.ajax({
+				url: '/detalle/'+id_producto+"/",
+				type: 'GET',
+				data: {},
+				success:crearFormulario,
+				error:errores
+			})
+			
+		})
+		$("#bregistrarse").click(RegistrarCompra);
+	
 
-			return false;
+
+			//$("#id_producto").attr("value","5")
+			$("#id_PrecioTotal").attr("value","0")
+			$("#id_CantidadTotal").attr("value","0")
+			$("#id_user").attr("value",{{ user.id }})
+			$("#id_user").attr("style","visibility:hidden")
+			$("#id_CantidadTotal").attr("style","visibility:hidden")
+			$("#id_PrecioTotal").attr("style","visibility:hidden")
+			//$("#id_producto").attr("style","visibility:hidden")
+
+
+			//$("#id_cliente").attr("disabled","disabled")
+			//console.log($("#id_producto").multiSelect("select",["5"]));
+			//$("#id_producto").selectIndex=1
+			//$("#id_producto").
+			$("#buscar").submit(function(){
+				var datos=$(this).serializeObject()
+				console.log(datos)
+				$.post("/buscar/",datos,function(res){
+					console.log(res.idCli)
+					if(res.idCli==-1){
+						$("#response").html("El cliente no existe desea registrarlo  <a href='/cliente/'>Crear</a>")
+					}else{
+						$("#response").html("")
+						$("#id_idCliente").val(res.idCli)
+						$("#id_cliente").val(res.idCli)
+						//$("#id_cliente").attr("disabled","disabled")
+					}
+					
+				},"json");
+
+				return false;
+			});
+			/*$("#seleccionar").on("click",function(e){
+				document.write('asdasd');
+			});*/
+
+
+
 		});
-	});
-</script>
-<h3>
-<form action="" method="POST" id="buscar">
-	{% csrf_token %}
-	{{buscar}}
-	<input type="submit"value="buscar">
-</form>
-<div id="response">
 
-</div>
-	</h3>	 
-<h3>
-			            <form action="" method="post">{% csrf_token %}
-			               <table>
 
-			                {{ new_venta }}
-			            </table>
-			             	<input type="submit" value="registrarse"/>
-			             	<a href="/user/login/">cancelar<span class="element brand">
-			            </form>
-			        </h3>
-{% endblock cuerpo %}
+		cargarFormularios=function(url){
+					$.ajax({
+							url: url,
+							type: 'GET',
+							data: {},
+						})
+						.done(function(response) {
+							renderizar(response)
+						})
+						.fail(function() {
+							console.log("error");
+						})
+						.always(function() {
+							console.log("complete");
+						});
+				}
+				renderizar=function(r){
+					$("#container").html(r)
+					$("#container").hide()
+					$("#container").show('slow')
+				}
+	</script>
+	<h3>
+	<form action="" method="POST" id="buscar">
+		{% csrf_token %}
+		{{buscar}}
+		<input type="submit"value="buscar">
+	</form>
+	<div id="response">
+
+	</div>
+		</h3>	 
+	<h3>
+				            <form action="" method="post">{% csrf_token %}
+				               <table>
+
+				                {{ new_venta }}
+				            </table>
+				             	<input type="submit" value="registrarse"/>
+				             	<a href="/cancelarVenta/">cancelar<span class="element brand">
+				            </form>
+				        </h3>
+				        
+
+
+
+	<div class="nombrecad"><br><br><br>
+		Seleccione los productos que desea <br><br><br>comprar
+	</div>
+	<ul class="MenuCat">
+		<li>
+				<a href=""></a>
+			</li>
+		<!--{%for cat in cate%}
+			<li>
+				<a href="/listado_por_categorias/{{cat.id}}/">{{cat.nombreCategoria}}</a>
+			</li>
+		{%endfor%}-->
+	</ul>
+		<div>
+			<ul class="item_lista">
+				{%for item in lista %}
+				<li class="principal">
+					<div>
+						<h1>{{item.NombredelProcuto}}</H1>
+						<!--<div class="numero"># Item {{item.id}}</div>-->
+						<div>
+							<ul id="detalle">
+								<li class="subprincipal">
+									
+										<b>Cantidad: </b>{{item.cantidad}}<br><br><br>
+									
+											<b>Fecha: </b>{{item.fecha}}	<br><br><br>
+									Precio :
+									{{item.precio}}<br><br><br>
+									<b>Categorias:</b><br><br><br>
+									<ul>
+										{%for categoria in item.cat.all%}
+										<li>
+											{{categoria.nombreCategoria}}
+											
+										</li><br><br>
+										{%endfor%}<br><br>
+									</ul>
+									<ul>
+									<li>
+									<a href="{{item.id}}" class="bcomprar" data-reveal-id="myModal" >Comprar</a><br><br>
+									<div id="myModal" class="reveal-modal">
+
+
+										<div id="fformulario"></div>
+										<a  class="close-reveal-modal" onClick="RegistrarCompra(fdetalle)">Aceptar</a>
+									</div>
+									</li>
+										
+									</ul>
+								</li>
+							</ul>
+						</div>	
+					</div>
+				</li>
+				{%endfor%}
+			</ul>
+		</div>
+
+
+
+	{% endblock cuerpo %}

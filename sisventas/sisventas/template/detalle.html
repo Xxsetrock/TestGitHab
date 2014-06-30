@@ -1,0 +1,21 @@
+<link href="/static/css/reveal.css" rel="stylesheet" type="text/css" />
+<script src="/static/js/jquery.reveal.js" type="text/javascript"></script>
+<script src="/static/js/jquery-1.4.2.min.js" type="text/javascript"></script>
+
+{% block cuerpo %}
+<h3>
+<div>
+	<form action="" method="post" id="fdetalle">
+		{% csrf_token %}
+		<table>
+
+		Cantidad : {{ detalle.cantidad}}
+		<br>
+		</table>
+		<input type="hidden" value={{idpro}} name="idpro">
+		<!--<a  class="close-reveal-modal" onClick="RegistrarCompra(fdetalle)">Aceptar</a>-->
+		
+	</form>
+</div></h3>
+
+{% endblock cuerpo %}
