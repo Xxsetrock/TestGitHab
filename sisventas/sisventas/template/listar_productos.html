@@ -1,4 +1,7 @@
 {% extends 'base.html' %}
+
+
+
 {% block cuerpo%}
 <div class="nombrecad">
 	Lista de productos
@@ -37,6 +40,11 @@
 										<a href="/listado_por_categorias/{{item.id}}/{{categoria.id}}/">Elimibar categoria</a>
 									</li>
 									{%endfor%}
+								</ul>
+								<ul><br><br>
+									<li>
+									<a href="/aumentarStock/{{item.id}}/" >aumentar stock</a><br><br>
+									</li>	
 								</ul>
 							</li>
 						</ul>

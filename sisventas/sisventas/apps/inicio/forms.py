@@ -4,11 +4,17 @@ from django import forms
 from  django import forms
 from django.contrib.auth.models import User
 from django.forms import ModelForm
+from models import Temporal
 class UsuarioForm(forms.Form):
 	class Meta:
 		form=User
 		exclude=["username"]
 
+
+
+class TemporalForm(ModelForm):
+  class Meta:
+    model = Temporal
 
 #class RegistroForm(ModelForm):
    # username= forms.CharField(label="Nombre de usuario", widget=forms.TextInput())

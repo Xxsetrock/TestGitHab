@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+
+
+{% block cuerpo%}
+<div class="nombrecad">
+	Lista de productos
+</div>
+<ul class="MenuCat">
+	<li>
+			<a href="/ver_productoss/">Todos</a>
+		</li>
+	{%for cat in cate%}
+		<li>
+			<a href="/listado_por_categoriass/{{cat.id}}/">{{cat.nombreCategoria}}</a>
+		</li>
+	{%endfor%}
+</ul>
+	<div>
+		<ul class="item_lista">
+			{%for item in lista %}
+			<li class="principal">
+				<div>
+					<h1>{{item.NombredelProcuto}}</H1>
+					<!--<div class="numero"># Item {{item.id}}</div>-->
+					<div>
+						<ul id="detalle">
+							<li class="subprincipal">
+								
+									<b>Cantidad: </b>{{item.cantidad}}<br><br><br>
+								
+										<b>Fecha: </b>{{item.fecha}}	<br><br><br>
+								Precio :
+								{{item.precio}}<br><br><br>
+								<b>Categorias:</b><br><br><br>
+								<ul>
+									{%for categoria in item.cat.all%}
+									<li>
+										{{categoria.nombreCategoria}}
+									
+									</li>
+									{%endfor%}
+								</ul>
+								
+							</li>
+						</ul>
+					</div>	
+				</div>
+			</li>
+			{%endfor%}
+		</ul>
+	</div>
+{% endblock cuerpo%}

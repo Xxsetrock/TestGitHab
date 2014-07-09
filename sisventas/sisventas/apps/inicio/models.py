@@ -13,4 +13,9 @@ from django.db import models
 #	contrasena=models.CharField(max_length=50)
 #	def __unicode__(self):
 #		return self.nombre
+class Temporal(models.Model):
+  activo=models.IntegerField()
+  def __unicode__(self):
+  	return "%s"%(self.activo)
+
 

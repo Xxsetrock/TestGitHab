@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block cuerpo %}
+<h3>CLIENTES FACTURADOS</h3>
+{% for dato in factura %}
+  <h3> 
+  	{{ dato.cliente}}
+  	<a href="/VerFactura/{{dato.venta.id}}/{{dato.id}}">Ver Factura</a>
+  	<br></h3>
+<br></h3>
+{% endfor %}
+{% endblock cuerpo %}

@@ -27,4 +27,13 @@ class detalle(models.Model):
 		return "%s %s"%(self.cantidad,self.precio)
 
 
+class factura(models.Model):
+	cliente=models.ForeignKey(client)
+	user=models.ForeignKey(User)
+	codigo= models.CharField(max_length=200)
+	venta=models.ForeignKey(newventa)
+	def __unicode__(self):
+		return "%s %s"%(self.codigo,self.cliente)
+
+
 		

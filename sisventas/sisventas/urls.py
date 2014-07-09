@@ -40,6 +40,13 @@ urlpatterns = patterns('',
 
 
 
+    url(r'^ver_productoss/$', 'sisventas.apps.producto.views.listadodeTodoo'),
+    url(r'^listado_por_categoriass/(?P<categoria>\d+)/$','sisventas.apps.producto.views.ListadoPorCategoriaa'),
+
+
+
+
+
     url(r'^eliminar_usuario/([0-9]{1,2})/$', 'sisventas.apps.inicio.views.eliminar_usuario'),
 
     url(r'^modificar_usuario/([0-9]{1,2})/$', 'sisventas.apps.inicio.views.modificar_usuario'),
@@ -57,7 +64,27 @@ urlpatterns = patterns('',
 
 
 
-    url(r'^factura/$', 'sisventas.apps.venta.views.factura'),
+    url(r'^factura/$', 'sisventas.apps.venta.views.facturaV'),
     url(r'^ReporteUsuario/$', 'sisventas.apps.venta.views.ReporteUsuario'),
     url(r'^buscar/$', 'sisventas.apps.venta.views.buscar'),
+
+
+    url(r'^ReporteDiario/$', 'sisventas.apps.inicio.views.ReporteDiario'),
+    url(r'^ReporteAnual/$', 'sisventas.apps.inicio.views.ReporteAnual'),
+    url(r'^ReporteMensual/$', 'sisventas.apps.inicio.views.ReporteMensual'),
+    url(r'^Calendario/$', 'sisventas.apps.venta.views.Calendario'),
+
+
+    url(r'^aumentarStock/([0-9]{1,2})/$', 'sisventas.apps.producto.views.aumentarStock'),
+    url(r'^listaFacturas/$', 'sisventas.apps.venta.views.listaFacturas'),
+    url(r'^VerFactura/([0-9]{1,2})/([0-9]{1,2})/$', 'sisventas.apps.venta.views.VerFactura'),
+
+
+    url(r'^androi/$', 'sisventas.apps.venta.views.androi'),
+    
+
+
+
+
+
 )+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

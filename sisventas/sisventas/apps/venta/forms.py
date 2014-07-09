@@ -1,4 +1,4 @@
-from models import newventa,detalle
+from models import newventa,detalle,factura
 from django.forms import ModelForm
 from  django import forms
 class buscarCliente(forms.Form):
@@ -17,3 +17,9 @@ class detalleForm(ModelForm):
 	#idCliente=forms.HiddenInput()
 	class Meta:
 		model = detalle
+
+
+
+class facturaForm(ModelForm):
+	class Meta:
+		model=factura

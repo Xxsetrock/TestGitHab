@@ -64,6 +64,25 @@ def ListadoPorCategoria(request,categoria):
 	categorialista=Categoria.objects.all()
 	return render_to_response("listar_productos.html",{"lista":lista,"cate":categorialista},RequestContext(request))
 
+
+
+@login_required(login_url='/user/login')
+def listadodeTodoo(request):
+	lista=newproducto.objects.all()
+	categorialista=Categoria.objects.all()
+	return render_to_response('listar_productoss.html',{'lista':lista,'cate':categorialista},RequestContext(request))	
+
+@login_required(login_url='/user/login')
+def ListadoPorCategoriaa(request,categoria):
+	lista=list(newproducto.objects.filter(cat__id=categoria))
+	categorialista=Categoria.objects.all()
+	return render_to_response("listar_productoss.html",{"lista":lista,"cate":categorialista},RequestContext(request))
+
+
+
+
+
+
 @login_required(login_url='/user/login')
 def borrarRel(request,idp,idc):
 	pro=newproducto.objects.get(id=idp)
@@ -73,3 +92,18 @@ def borrarRel(request,idp,idc):
 	categorialista=Categoria.objects.all()
 	pro.save()
 	return render_to_response("listar_productos.html",{"lista":lista,"cate":categorialista},RequestContext(request))
+
+
+
+@login_required(login_url='/user/login')
+def aumentarStock(request,id):
+	if request.method=='POST':
+	  	cant=request.POST['cantidad']
+	  	pro=newproducto.objects.get(id=id)
+
+	  	pro.cantidad=pro.cantidad+int(cant)
+	  	pro.save()
+	  	return HttpResponseRedirect('/ver_productos/')
+	else:
+  		return render_to_response('AumentarStock.html',{},context_instance=RequestContext(request))
+
